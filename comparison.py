@@ -40,19 +40,18 @@ def main(col_names=None):
         total += 1
         result = dtree_build.classify(i, tree)
         out = naive_bayes.classifier(result2, i)
-        if out == int(i[-1]):
-            correct2 += 1
         sum_probability = 0
-        for j in result.values():
-            sum_probability += j
         max_number = 0
         choice = ''
         for n, m in result.items():
+            sum_probability += m
             if m >= max_number:
                 max_number = m
                 choice = n
         if choice == i[-1]:
             correct += 1
+        if out == int(i[-1]):
+            correct2 += 1
         sublist = [total, i[-1], choice, max_number/sum_probability]
         out_put.append(sublist)
 
